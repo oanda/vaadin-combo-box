@@ -126,7 +126,7 @@
       this.$.selector.style.maxHeight = this._maxHeight(targetRect);
 
       var overlayRect = this.getBoundingClientRect();
-      this._translateX = targetRect.left - overlayRect.left + (this._translateX || 0);
+      this._translateX = targetRect.left - overlayRect.left + (this._translateX || 0) - 1;
       this._translateY = targetRect.top - overlayRect.top + (this._translateY || 0) +
         this._verticalOffset(overlayRect, targetRect);
 

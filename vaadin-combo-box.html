@@ -82,7 +82,6 @@ Custom property | Description | Default
     <style include="vaadin-combo-box-shared-styles">
       :host {
         display: block;
-        padding: 8px 0;
       }
 
       :host > #overlay {
@@ -94,29 +93,18 @@ Custom property | Description | Default
         padding: 0;
       }
 
-      paper-icon-button.clear-button,
       paper-icon-button.toggle-button,
-      :host ::content paper-icon-button.clear-button,
       :host ::content paper-icon-button.toggle-button {
         position: absolute;
-        bottom: -4px;
-        right: -4px;
-
-        line-height: 18px !important;
-        width: 32px;
-        height: 32px;
-        padding: 4px;
-        text-align: center;
-
-        color: rgba(0, 0, 0, .38);
+        top: 10px;
+        right: 9px;
+        margin: 0;
+        padding: 0;
+        width: 6px;
+        height: 4px;
+        line-height: 0;
+        color: #676767;
         cursor: pointer;
-        margin-top: -1px;
-        --paper-icon-button-ink-color: rgba(0, 0, 0, .54);
-      }
-
-      paper-input-container paper-icon-button.clear-button,
-      paper-input-container ::content paper-icon-button.clear-button {
-        right: 28px;
       }
 
       paper-input-container paper-icon-button:hover,
@@ -142,12 +130,26 @@ Custom property | Description | Default
 
       #input {
         box-sizing: border-box;
-        padding-right: 28px;
+        color: #444444;
+        font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+        font-size: 12px;
+        padding-left: 8px;
+        padding-right: 8px;
       }
 
       :host([opened][has-value]) #input {
-        padding-right: 60px;
         margin-right: -32px;
+      }
+
+      paper-input-container {
+        --paper-input-container-underline: {
+          display: none;
+        };
+      }
+      paper-input-container {
+        --paper-input-container-underline-focus: {
+          display: none
+        };
       }
 
     </style>
@@ -193,21 +195,12 @@ Custom property | Description | Default
 
       <content select="[suffix]"></content>
 
-      <content select=".clear-button">
-        <paper-icon-button
-            id="clearIcon"
-            tabindex="-1"
-            aria-label="Clear"
-            icon="vaadin-combo-box:clear"
-            class="clear-button small">
-        </paper-icon-button>
-      </content>
-
       <content select=".toggle-button">
         <paper-icon-button
+            noink
             id="toggleIcon"
             tabindex="-1"
-            icon="vaadin-combo-box:arrow-drop-down"
+            src="images/down-arrow.svg"
             aria-label="Toggle"
             aria-expanded$="[[_getAriaExpanded(opened)]]"
             class="toggle-button rotate-on-open">
@@ -228,7 +221,7 @@ Custom property | Description | Default
         on-down="_onOverlayDown"
         loading="[[loading]]"
         on-mousedown="_preventDefault"
-        vertical-offset="2">
+        vertical-offset="-2">
     </vaadin-combo-box-overlay>
   </template>
 </dom-module>
@@ -356,7 +349,6 @@ Custom property | Description | Default
 
       // Use the default toggle/clear or one replaced in light DOM.
       this._toggleElement = Polymer.dom(this).querySelector('.toggle-button') || this.$.toggleIcon;
-      this._clearElement = Polymer.dom(this).querySelector('.clear-button') || this.$.clearIcon;
       this._preventInputBlur();
     },
 
