@@ -97,7 +97,7 @@ Custom property | Description | Default
       :host ::content paper-icon-button.toggle-button {
         position: absolute;
         top: 10px;
-        right: 9px;
+        right: 8px;
         margin: 0;
         padding: 0;
         width: 6px;
@@ -135,6 +135,23 @@ Custom property | Description | Default
         font-size: 12px;
         padding-left: 8px;
         padding-right: 8px;
+      }
+
+      #input::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+        color:  #444444;
+        font-size: 10px;
+      }
+      #input::-moz-placeholder { /* Firefox 19+ */
+        color:  #444444;
+        font-size: 10px;
+      }
+      #input:-ms-input-placeholder { /* IE 10+ */
+        color:  #444444;
+        font-size: 10px;
+      }
+      #input:-moz-placeholder { /* Firefox 18- */
+        color:  #444444;
+        font-size: 10px;
       }
 
       :host([opened][has-value]) #input {

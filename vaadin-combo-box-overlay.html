@@ -18,6 +18,7 @@
         background: #fff;
         border: 0.5px solid #DDDDDD;
         box-shadow: none;
+        font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
         top: 0;
         left: 0;
         pointer-events: auto;
@@ -53,6 +54,7 @@
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
+        font-size: 11px;
       }
 
       :host([opened][loading]) {
@@ -63,11 +65,7 @@
 
       #selector:not([touch-device]) vaadin-combo-box-item:hover,
       #selector vaadin-combo-box-item[focused] {
-        background: #eee;
-      }
-
-      #selector vaadin-combo-box-item[selected] {
-        color: var(--primary-color);
+        background: #eaeaea;
       }
     </style>
 
