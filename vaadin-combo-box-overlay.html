@@ -16,7 +16,9 @@
         position: absolute;
         @apply(--shadow-elevation-2dp);
         background: #fff;
-        border-radius: 0 0 2px 2px;
+        border: 0.5px solid #DDDDDD;
+        box-shadow: none;
+        font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
         top: 0;
         left: 0;
         pointer-events: auto;
@@ -34,7 +36,7 @@
         max-height: var(--vaadin-combo-box-overlay-max-height, 65vh);
 
         /* Fixes item background from getting on top of scrollbars on Safari */
-        transform: translate3d(0, 0, 0);
+        transform: translate(0, 0);
 
         /* Enable momentum scrolling on iOS (iron-list v1.2+ no longer does it for us) */
         -webkit-overflow-scrolling: touch;
@@ -42,18 +44,17 @@
 
       #selector {
         --iron-list-items-container: {
-          border-top: 8px solid transparent;
-          border-bottom: 8px solid transparent;
         };
       }
 
       #selector vaadin-combo-box-item {
         cursor: pointer;
-        padding: 13px 16px;
+        padding-left: 8px;
         color: var(--primary-text-color);
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
+        font-size: 11px;
       }
 
       :host([opened][loading]) {
@@ -64,11 +65,7 @@
 
       #selector:not([touch-device]) vaadin-combo-box-item:hover,
       #selector vaadin-combo-box-item[focused] {
-        background: #eee;
-      }
-
-      #selector vaadin-combo-box-item[selected] {
-        color: var(--primary-color);
+        background: #eaeaea;
       }
     </style>
 
@@ -256,7 +253,7 @@
 
     _focusedIndexChanged: function(index) {
       if (index >= 0) {
-        this._scrollIntoView(index);
+        this._scrollIntoView(0);
       }
     },
 
@@ -277,7 +274,7 @@
         // the correct scrollTop on the scrollTarget. Scrolling to firstVisibleIndex.
         targetIndex = this.$.selector.firstVisibleIndex;
       }
-      this.$.selector.scrollToIndex(Math.max(0, targetIndex));
+      this.$.selector.scrollToIndex(0);
 
       // Sometimes the item is partly below the bottom edge, detect and adjust.
       var item = this._items[index];
@@ -299,7 +296,7 @@
 
     adjustScrollPosition: function() {
       if (this._items) {
-        this._scrollIntoView(this._focusedIndex);
+        this._scrollIntoView();
       }
     },
 
